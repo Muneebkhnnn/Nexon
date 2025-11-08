@@ -8,3 +8,13 @@
 @theme{
     --color-primary: #5044E5;
 }
+
+/* for removing tailwind from the dashboard recent creations */
+.reset-tw, .reset-tw *{ 
+    all: revert !important;
+}
+
+/* for  moving checkout on top of navbar earlier it was being hidden by navbar from top */
+.cl-drawerRoot{
+    z-index: 10;
+}
