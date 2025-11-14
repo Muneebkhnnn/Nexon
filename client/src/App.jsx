@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Toaster } from 'react-hot-toast';
+
 
 
 
 function App() {
+
+  useEffect(() => {
+    console.log("App mounted")
+  }, [])
   
+
   return (
-    <div>
-      App
-    </div>
+    <>
+      <Toaster position="top-center" reverseOrder={false} />
+
+    </>
   )
 }
 

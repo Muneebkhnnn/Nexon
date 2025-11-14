@@ -45,8 +45,8 @@ if (!PUBLISHABLE_KEY) {
 createRoot(document.getElementById('root')).render(
 
   <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+    <App />
     <RouterProvider router={router}>
-      <App />
     </RouterProvider>
   </ClerkProvider>
-)
+);
