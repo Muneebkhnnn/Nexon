@@ -215,54 +215,58 @@ const removeImageObject = asyncHandler(async (req, res) => {
   const { object } = req.body;
   const file = req.file;
   const plan = req.plan;
+  try {
+    if (!file) {
+      throw new ApiError(400, "Image is required.");
+    }
 
-  if (!file) {
-    throw new ApiError(400, "Image is required.");
+    if (!object.trim()) {
+      throw new ApiError(400, "Object name is required.");
+    }
+
+    if (plan !== "premium") {
+      throw new ApiError(
+        403,
+        "This Feature is only available for premium users."
+      );
+    }
+
+    // Convert uploaded image to Base64
+    const base64Image = `data:${file.mimetype};base64,${file.buffer.toString(
+      "base64"
+    )}`;
+
+    const cloudinaryResponse = await cloudinary.uploader.upload(base64Image, {
+      folder: "nexon/Img-obj-remove",
+      transformation: [
+        {
+          effect: `gen_remove:${object}`,
+        },
+      ],
+      resource_type: "image",
+    });
+
+    const secure_url = cloudinaryResponse.secure_url;
+
+    await sql`
+      INSERT INTO creations (user_id, prompt, content, type)
+      VALUES (
+        ${userId},
+        ${`Remove ${object} from image`},
+        ${secure_url},
+        'image'
+      )
+    `;
+
+    console.log("obj removed and saved successfully!");
+
+    return res
+      .status(200)
+      .json(new ApiResponse(200, "object removed successfully", secure_url));
+  } catch (error) {
+    console.error("REMOVE IMAGE OBJECT ERROR:", error);
+    throw new ApiError(500, error.message);
   }
-
-  if (!object.trim()) {
-    throw new ApiError(400, "Object name is required.");
-  }
-
-  if (plan !== "premium") {
-    throw new ApiError(
-      403,
-      "This Feature is only available for premium users."
-    );
-  }
-
-  // Convert uploaded image to Base64
-  const base64Image = `data:${file.mimetype};base64,${file.buffer.toString(
-    "base64"
-  )}`;
-
-  const cloudinaryResponse = await cloudinary.uploader.upload(base64Image, {
-    folder: "nexon/Img-obj-remove",
-    transformation: [
-      {
-        effect: `gen_remove:${object}`,
-      },
-    ],
-    resource_type: "image",
-  });
-
-  const secure_url = cloudinaryResponse.secure_url;
-
-  await sql`
-    INSERT INTO creations (user_id, prompt, content, type)
-    VALUES (
-      ${userId},
-      ${`Remove ${object} from image`},
-      ${secure_url},
-      'image'
-    )
-  `;
-
-  console.log("obj removed and saved successfully!");
-
-  return res
-    .status(200)
-    .json(new ApiResponse(200, "object removed successfully", secure_url));
 });
 
 const resumeReview = asyncHandler(async (req, res) => {
@@ -287,8 +291,7 @@ const resumeReview = asyncHandler(async (req, res) => {
 
   const pdfData = await pdf(file.buffer);
 
-  const prompt = `Review the following resume and provide
-constructive feedback on its strengths, weaknesses, and areas for improvement:\n\n${pdfData.text}`;
+  const prompt = `Analyze this resume and briefly summarize strengths, weaknesses, and improvement areas. Provide domain-specific ATS suggestions and an estimated ATS match score.:\n\n${pdfData.text}`;
 
   const response = await openai.chat.completions.create({
     model: "gemini-2.0-flash",
@@ -303,7 +306,7 @@ constructive feedback on its strengths, weaknesses, and areas for improvement:\n
   });
 
   const content = response.choices[0].message.content;
-  
+
   await sql`
     INSERT INTO creations (user_id, prompt, content, type)
     VALUES (

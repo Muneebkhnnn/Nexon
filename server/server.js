@@ -4,7 +4,7 @@ import { clerkMiddleware, requireAuth } from "@clerk/express";
 import cors from "cors";
 import { errorHandler } from "./middleware/errorHandler.middleware.js";
 import connectCloudinary from "./utils/Cloudinary.js";
-import userRouter from "./routes/user.routes.js";
+import userRouter from "./routes/user.Routes.js";
 import aiRouter from "./routes/Ai.Route.js";
 
 dotenv.config();

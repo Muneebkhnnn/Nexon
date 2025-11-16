@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import AiTools from '../components/AiTools'
@@ -8,15 +8,19 @@ import Footer from '../components/Footer'
 import { useAuth } from "@clerk/clerk-react"
 
 function Home() {
+  const { getToken } = useAuth();
+  useEffect(() => {
+    getToken().then(token => console.log(token))
+  }), []
 
   return (
     <>
       <Navbar />
       <Hero />
       <AiTools />
-      <Testimonials/>
-      <Plan/>
-      <Footer/>
+      <Testimonials />
+      <Plan />
+      <Footer />
     </>
   )
 }
