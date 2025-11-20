@@ -9,7 +9,6 @@ import { SquarePen, Hash, Image, Eraser, Scissors, FileText } from 'lucide-react
 
 export const assets = {
     logo,
-  
     user_group,
     star_icon,
     star_dull_icon,

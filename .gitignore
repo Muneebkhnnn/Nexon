@@ -4,6 +4,8 @@ node_modules/
 client/node_modules/
 server/node_modules/
 
+*.txt
+
 # Environment variables
 .env
 .env.local
