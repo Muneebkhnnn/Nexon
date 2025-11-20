@@ -147,30 +147,6 @@ vercel --prod
    - Set all environment variables in Vercel dashboard
    - Update `VITE_BASE_URL` to production backend URL
 
-
-1. Create Neon database
-2. Run SQL migrations for required tables:
-
-```sql
-CREATE TABLE creations (
-  id SERIAL PRIMARY KEY,
-  user_id VARCHAR(255) NOT NULL,
-  prompt TEXT NOT NULL,
-  content TEXT NOT NULL,
-  type VARCHAR(50) NOT NULL,
-  publish BOOLEAN DEFAULT false,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE likes (
-  id SERIAL PRIMARY KEY,
-  user_id VARCHAR(255) NOT NULL,
-  creation_id INTEGER REFERENCES creations(id),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  UNIQUE(user_id, creation_id)
-);
-```
-
 ## 🔐 Security Features
 
 - **JWT Authentication** via Clerk
