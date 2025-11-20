@@ -69,6 +69,7 @@ function RemoveBg() {
         <input onChange={(e) => setInput(e.target.files[0])} accept='image/*' type="file" className='w-full cursor-pointer  text-gray-600 p-2 px-3 mt-2 outline-none text-sm rounded-md border border-gray-300' />
 
         <p className='text-xs text-gray-500 font-light mt-1'>Supports JPG, PNG, and other image formats</p>
+        <p className='text-xs text-[#FF4938] font-light mt-1'>Please upload a clear image for best results</p>
 
 
         <button

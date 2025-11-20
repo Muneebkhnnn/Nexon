@@ -1,5 +1,6 @@
 import React from 'react'
 import { assets } from '../assets/assets';
+import logo from '../assets/logo.png';
 
 function Footer() {
     return (
@@ -15,8 +16,14 @@ function Footer() {
             <footer className="px-6 md:px-16 lg:px-24 xl:px-32 w-full text-sm text-slate-500 bg-white pt-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14">
                     <div className="sm:col-span-2 lg:col-span-1">
-                        <img src={assets.logo} alt="logo" />
-                        <p className="text-sm/7 mt-6">PrebuiltUI is a free and open-source UI component library with over 300+ beautifully crafted, customizable components built with Tailwind CSS.</p>
+                        <div className='flex items-center'>
+                            <img src={logo} alt="logo" className=' cursor-pointer w-14 sm:w-16'
+                            />
+                            <h1 className='text-primary font-bold text-2xl inline-block ml-2'>Nexon</h1>
+                        </div>
+
+                        <p className="text-sm/7 mt-6">Nexon is your intelligent AI companion for everyday productivity.
+                            Focus on what matters, let Nexon handle the rest.</p>
                     </div>
                     <div className="flex flex-col lg:items-center lg:justify-center">
                         <div className="flex flex-col text-sm space-y-2.5">

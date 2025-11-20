@@ -6,23 +6,28 @@ function Testimonials() {
             image: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200',
             name: 'Briar Martin',
             handle: '@neilstellar',
+            text: 'Nexon has transformed my content creation process. The AI tools are intuitive and produce high-quality results, saving me hours of work',
         },
         {
             image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200',
             name: 'Avery Johnson',
             handle: '@averywrites',
+            text: 'The resume review tool on Nexon is a game-changer. It provided me with actionable feedback that helped me land my dream job',
         },
         {
             image: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60',
             name: 'Jordan Lee',
             handle: '@jordantalks',
+            text: 'I love how easy Nexon makes it to create stunning visuals. The AI image generator is fast and produces unique images that perfectly match my content needs',
         },
         {
             image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60',
             name: 'Avery Johnson',
             handle: '@averywrites',
+            text:'Nexon has boosted my productivity significantly. The AI tools are user-friendly and deliver impressive results, allowing me to focus more on creativity',
         },
     ];
+
 
     const CreateCard = ({ card }) => (
         <div className="p-4 rounded-lg mx-4 shadow hover:shadow-lg transition-all duration-200 w-72 shrink-0">
@@ -33,10 +38,9 @@ function Testimonials() {
                         <p>{card.name}</p>
                         {/* can add star icon here from assets time:1:09:18 */}
                     </div>
-                    <span className="text-xs text-slate-500">{card.handle}</span>
                 </div>
             </div>
-            <p className="text-sm py-4 text-gray-800">Radiant made undercutting all of our competitors an absolute breeze.</p>
+            <p className="text-sm py-4 text-gray-800">{card.text}.</p>
         </div>
     );
 

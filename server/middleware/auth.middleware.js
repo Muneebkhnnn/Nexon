@@ -4,6 +4,7 @@ import { clerkClient } from "@clerk/express";
 
 export const auth = async (req, res, next) => {
   try {
+    
     const { userId, has } = await req.auth(); //returns authentication data.
     const hasPremiumPlan = await has({ plan: "premium" });
     console.log("UserID:", userId, "Has Premium:", hasPremiumPlan);

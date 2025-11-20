@@ -4,6 +4,7 @@ import { asyncHandler } from "../utils/AsyncHandler.js";
 import sql from "../db/db.js";
 
 const getUserCreations = asyncHandler(async (req, res) => {
+  console.log("🧩 Authenticated User ID:", req.auth().userId);
   const { userId } = req.auth();
   try {
     const creations =

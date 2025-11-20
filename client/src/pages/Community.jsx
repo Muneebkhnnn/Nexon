@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useUser } from '@clerk/clerk-react';
-import { dummyPublishedCreationData } from '../assets/assets.js';
 import { Heart } from 'lucide-react'; // Add this import for the Heart icon
 import { useAuth } from '@clerk/clerk-react';
 import toast from 'react-hot-toast';
@@ -67,7 +66,7 @@ function Community() {
 
   return !loading ? (
     <div className='flex-1 h-full flex flex-col gap-4 p-6'>
-      <h1 className='h-12 w-40 rounded-xl bg-linear-to-tr from-[#12a5c6] to-[primary] py-3 px-4 shadow-md'>Public Creations</h1>
+       <h1 className='h-12 w-40 rounded-xl bg-linear-to-tr from-[#3464c5] to-[primary] py-3 px-4 font-medium text-white'>Public Creations</h1>
       <div className='bg-white h-full w-full rounded-xl overflow-y-scroll'>
         {creations.map((creation, index) => (
           <div key={index} className='relative group inline-block pl-3 pt-3 w-full sm:max-w-1/2 lg:max-w-1/3'>

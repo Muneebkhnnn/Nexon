@@ -81,6 +81,7 @@ return (
 
       <input onChange={(e) => setInput(e.target.files[0])} accept='image/*' type="file" className='w-full cursor-pointer  text-gray-600 p-2 px-3 mt-2 outline-none text-sm rounded-md border border-gray-300' />
 
+      <p className='text-xs text-[#4A7AFF] font-light mt-1'>Please upload a clear image for best results</p>
       <p className='mt-6 text-sm font-medium'>Describe object name to remove</p>
 
       <textarea rows={4} onChange={(e) => setObject(e.target.value)} value={object} type="text" className='w-full p-2 px-3 mt-2 outline-none text-sm rounded-md border border-gray-300' placeholder='e.g., watch or spoon, only single object name' required />
