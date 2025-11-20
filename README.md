@@ -65,19 +65,6 @@ Nexon is a comprehensive AI-powered platform that enables users to generate arti
 - Cloudinary account
 - ClipDrop API key
 
-#### Server (.env)
-```env
-PORT=5000
-DATABASE_URL=your_neon_database_url
-CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-CLERK_SECRET_KEY=your_clerk_secret_key
-GEMINI_API_KEY=your_openai_api_key
-CLIPDROP_API_KEY=your_clipdrop_api_key
-CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-```
-
 ### Installation Steps
 
 1. **Clone the repository**
@@ -118,7 +105,7 @@ npm run dev
 
 6. **Access the application**
    - Frontend: http://localhost:5173
-   - Backend API: http://localhost:5000
+   - Backend API: http://localhost:3000
 
 ## 🌐 API Endpoints
 
