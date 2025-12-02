@@ -15,6 +15,14 @@ function RemoveBg() {
 
   const { getToken } = useAuth();
 
+  const getImageUrl = (url) => {
+    const ext = url.split('.').pop().split('?')[0];
+    return url.replace(
+      "/upload/",
+      `/upload/fl_attachment:downloaded_image/`
+    );
+  }
+
 
   const onSubmitHandler = async (e) => {
 
@@ -22,7 +30,7 @@ function RemoveBg() {
 
     try {
       setLoading(true);
-      
+
       if (!input) {
         return toast.error("Please upload an image");
       }
@@ -90,8 +98,19 @@ function RemoveBg() {
           <h1 className='text-xl font-semibold'>Processed image</h1>
         </div>
         {content ? (
-          <img className='w-full h-full mt-3'
-            src={content} alt="image" />
+          <div className='mt-3 h-full '>
+            <img className='w-full h-full mt-3' src={content} alt="image" />
+            <button
+              onClick={() => {
+                const downloadUrl = getImageUrl(content);
+                window.location.href = downloadUrl;
+              }}
+              className="  my-2 px-5 py-2 bg-green-500 cursor-pointer text-white font-medium rounded-lg shadow hover:bg-primary transition"
+            >
+              Download Image
+            </button>
+          </div>
+
         ) : (
           <div className='flex-1 flex justify-center items-center'>
             <div className='text-sm flex flex-col items-center gap-5 text-gray-400'>

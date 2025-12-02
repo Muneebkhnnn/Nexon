@@ -21,7 +21,7 @@ const getUserCreations = asyncHandler(async (req, res) => {
       );
   } catch (error) {
     console.log("Error in getUserCreations:", error.message);
-    throw new ApiError(500, "Internal Server Error");
+    throw new ApiError(500, "No creations found for the user");
   }
 });
 

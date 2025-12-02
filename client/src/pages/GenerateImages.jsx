@@ -19,7 +19,13 @@ function GenerateImages() {
 
   const { getToken } = useAuth();
 
-
+  const getImageUrl = (url) => {
+    const ext = url.split('.').pop().split('?')[0];
+    return url.replace(
+      "/upload/",
+      `/upload/fl_attachment:downloaded_image/`
+    );
+  }
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -28,6 +34,7 @@ function GenerateImages() {
       toast.error('Please enter a topic');
       return;
     }
+
 
     try {
       setLoading(true);
@@ -125,8 +132,18 @@ function GenerateImages() {
             </div>
           </div>
         ) : (
-          <div className='mt-3 he-full '>
+          <div className='mt-3 h-full '>
             <img src={content} alt="image" className='w-full h-full' />
+            <button
+              onClick={() => {
+                const downloadUrl = getImageUrl(content);
+                window.location.href = downloadUrl;
+              }}
+              className="  my-2 px-5 py-2 bg-green-500 cursor-pointer text-white font-medium rounded-lg shadow hover:bg-primary transition"
+            >
+              Download Image
+            </button>
+
           </div>
         )}
 
